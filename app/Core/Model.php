@@ -71,10 +71,12 @@ abstract class Model implements DbModelInterface
      */
     public function sort($params)
     {
-        /*
-          TODO
-          return $this;
-         */
+        if (count($params) > 0) {
+            $this->sql .= sprintf(
+                " order by %s",
+                Util::keyValueToList($params, "%s %s")
+            );
+        }
         return $this;
     }
 
@@ -161,21 +163,26 @@ abstract class Model implements DbModelInterface
     {
         return 1;
     }
-//------------------
+//-----------------
     public function addItem($values)
     {
         $db = new DB();
         $id = $db->createEntity($this, $values);
-
         if ($id) {
             return $this->getItem($id);
         }
+        return null;
     }
 
     public function saveItem($id, $values)
     {
         $db = new DB();
-
         return  $db->updateEntity($this, $id, $values);
+    }
+
+    public function deleteItem($id)
+    {
+        $db = new DB();
+        $db->deleteEntity($this, $id);
     }
 }
