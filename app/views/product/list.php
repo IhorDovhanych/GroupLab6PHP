@@ -23,9 +23,8 @@
 </div>
 
 <?php
-$products =  $this->get('products');
-
-foreach($products as $product)  :
+$products = $this->get('products');
+foreach($products as $product):
 ?>
     <div class="product">
         <p class="sku">Код: <?php echo $product['sku']?></p>
@@ -34,8 +33,10 @@ foreach($products as $product)  :
         <p> Кількість: <?php echo $product['qty']?></p>
         <p><?php if(!($product['qty'] > 0)) { echo 'Нема в наявності'; } ?></p>
         <p>
-            <?= \Core\Url::getLink('/product/edit', 'Редагувати', array('id'=>$product['id'])); ?>
+            <?= \Core\Url::getLink('/product/edit', 'Редагувати', array('edit'=>$product['id'])); ?>
         </p>
     </div>
-<?php endforeach; ?>
+<?php //include 'edit.php';
+endforeach;
+?>
 

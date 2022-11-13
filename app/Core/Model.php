@@ -163,7 +163,7 @@ abstract class Model implements DbModelInterface
     {
         return 1;
     }
-
+//-----------------
     public function addItem($values)
     {
         $db = new DB();
