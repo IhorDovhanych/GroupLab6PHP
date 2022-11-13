@@ -17,6 +17,7 @@ class Autoloader
     {
         spl_autoload_register(static function ($class) {
             $file = ROOT . DS . 'app' . DS . str_replace('\\', DS, $class) . '.php';
+
             if (file_exists($file)) {
                 require $file;
 
